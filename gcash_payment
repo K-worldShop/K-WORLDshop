@@ -1,0 +1,18 @@
+<?php
+// Gcash payment handling logic
+
+// Include necessary files and initialize session
+include 'components/connect.php'; // Include your database connection file
+session_start(); // Start the session
+
+// Fetch order details from session or database
+// Example: $total_price = $_SESSION['total_price'];
+
+// Your Gcash payment handling logic here
+// Replace 'YOUR_GCASH_PAYMENT_PAGE' with the URL of your Gcash payment page
+$gcash_payment_page = 'YOUR_GCASH_PAYMENT_PAGE';
+
+// Redirect the user to Gcash's payment page
+header('Location: ' . $gcash_payment_page);
+exit();
+?>

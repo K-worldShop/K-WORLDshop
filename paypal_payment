@@ -1,0 +1,27 @@
+<?php
+// PayPal payment handling logic
+
+// Include necessary files and initialize session
+include 'components/connect.php'; // Include your database connection file
+session_start(); // Start the session
+
+// Fetch order details from session or database
+// Example: $total_price = $_SESSION['total_price'];
+
+// Replace 'YOUR_PAYPAL_API_CLIENT_ID' with your PayPal API client ID
+$paypal_client_id = 'YOUR_PAYPAL_API_CLIENT_ID';
+
+// Construct PayPal payment URL
+$paypal_payment_url = 'https://www.paypal.com/checkoutnow?';
+$paypal_payment_url .= http_build_query([
+    'client-id' => $paypal_client_id,
+    'intent' => 'capture',
+    'purchase_units[0][amount][value]' => $total_price, // Total order amount
+    'purchase_units[0][amount][currency_code]' => 'USD', // Currency code
+    // Add more parameters as needed
+]);
+
+// Redirect the user to PayPal's payment page
+header('Location: ' . $paypal_payment_url);
+exit();
+?>
